@@ -1,0 +1,63 @@
+﻿@model EmpMangWebApp.Models.EmployeesViewModel
+
+@{
+	ViewData["Title"] = "Delete Employee";
+	var successMessage = TempData["successMessage"]?.ToString();
+	var errorMessage = TempData["errorMessage"]?.ToString();
+}
+
+<h3> @ViewData["Title"]</h3>
+
+@if (!string.IsNullOrWhiteSpace(successMessage))
+{
+	<div class=" alert alert-success">
+		<strong> Success ! </strong>@successMessage
+		<buttton type=" button" class="btn-close float-end" data-bs-dismiss"> </buttton>
+	</div>
+}
+else if (!string.IsNullOrWhiteSpace(errorMessage))
+{
+	<div class=" alert alert-danger">
+		<strong> Error ! </strong>@errorMessage
+		<buttton type=" button" class="btn-close float-end" data-bs-dismiss"> </buttton>
+	</div>
+}
+
+
+<form action="Delete" method="post">
+	<div class="mb-3">
+		<label class="form-label"> Id </label>
+		<input type="text" class="form-control" asp-for="Id" readonly />
+	</div>
+
+	<div class="mb-3">
+		<label class="form-label"> Name </label>
+		<input type="text" class="form-control" asp-for="Name" readonly />
+		
+	</div>
+
+	<div class="mb-3">
+		<label class="form-label"> E-mail </label>
+		<input type="text" class="form-control" asp-for="Email" readonly />
+	
+	</div>
+
+	<div class="mb-3">
+		<label class="form-label"> Address </label>
+		<input type="text" class="form-control" asp-for="Address" readonly />
+		
+	</div>
+
+	<div class="mb-3">
+		<label class="form-label"> City </label>
+		<input type="text" class="form-control" asp-for="City" readonly />
+		
+	</div>
+
+	<div class=" d-grid">
+		<button type="submit" class="btn btn-danger" 
+		onclick="return confirm function('Are you sure delete this employees :
+		@Model.Name')"> Delete Employee</button>
+	</div>
+
+</form>

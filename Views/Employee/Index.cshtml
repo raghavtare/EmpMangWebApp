@@ -1,0 +1,86 @@
+﻿@model List<EmpMangWebApp.Models.EmployeesViewModel>
+
+@{
+	ViewData["Title"] = " Employees Details ";
+
+	var successMessage = TempData["successMessage"]?.ToString();
+	var errorMessage = TempData["errorMessage"]?.ToString();
+}
+<h3>@ViewData["Title"]</h3>
+
+@if (!string.IsNullOrWhiteSpace(successMessage))
+{
+	<div class=" alert alert-success">
+		<strong> Success ! </strong>@successMessage
+		<buttton type=" button" class="btn-close float-end" data-bs-dismiss"> </buttton>
+	</div>
+}
+else if (!string.IsNullOrWhiteSpace(errorMessage))
+{
+	<div class=" alert alert-danger">
+		<strong> Error ! </strong>@errorMessage
+		<buttton type=" button" class="btn-close float-end" data-bs-dismiss"> </buttton>
+	</div>
+}
+
+<style type="text/css">
+	body {
+		background-color:gray;
+		color: white;
+	}
+	th{
+		background-color: blueviolet;
+		color: white;
+	}
+</style>
+<body>
+
+<form>
+	<button asp-action="Create" asp-asp-controller="Employee" class=" btn btn-primary mb-3"> Create Employees</button>
+
+	<table class="table table-rtable-responsive table-hover table-bordered ">
+
+		<thead>
+			<tr class="table-active">  
+				<th>Id</th>
+				<th>Full Name</th>
+				<th>E-mail</th>
+				<th>Address</th>
+				<th>City</th>
+				<th>Action</th>
+
+			</tr>
+		</thead>
+		<tbody>
+
+			@if (Model != null && Model.Any())
+			{
+				foreach (var employees in Model)
+				{
+					<tr> 
+						<td>@employees.Id</td>
+						<td>@employees.Name</td>
+						<td>@employees.Email</td>
+						<td>@employees.Address</td>
+						<td>@employees.City</td>
+						<td>
+							<a asp-controller="Employee" asp-action="Edit" asp-route-id="@employees.Id" class="btn btn-primary" >Edit</a>
+							<a asp-controller="Employee" asp-action="Delete" asp-route-id="@employees.Id" class="btn btn-danger">Delete</a>
+						</td>
+					</tr>
+				}
+			}
+			else
+			{
+				<tr>
+					<td colspan="6">
+						<div> 
+							No Employees available at the moment!
+						</div>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</form>
+</body>

@@ -37,12 +37,12 @@ steps:
       solution: '$(solution)'
       msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
       platform: '$(buildPlatform)'
-      configuration: '$(buildConfiguration)'
+      configuration: '$(variables.buildConfiguration)'
 
   - task: VSTest@2
     inputs:
-      platform: '$(buildPlatform)'
-      configuration: '$(buildConfiguration)'
+      platform: '$(variables.buildPlatform)'
+      configuration: '$(variables.buildConfiguration)'
 
   - task: AzureCLI@2
     displayName: 'Azure CLI Login'
@@ -53,7 +53,7 @@ steps:
     displayName: 'Azure Web App Deploy'
     inputs:
       azureSubscription: $(Free Trial)
-      appName: $(appServiceName)
+      appName: $(variables.appServiceName)
       package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-      resourceGroupName: $(WebappRG)
+      resourceGroupName: $variables.(WebappRG)
       deploymentMethod: 'runFromPackage'

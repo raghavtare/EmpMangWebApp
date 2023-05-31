@@ -14,7 +14,7 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   - name: 'appServiceName'
-    value: 'suoerbwebappe'
+    value: 'suoerbwebapp'
   - name: 'resourceGroupName'
     value: 'WebappRG'
   - name: 'azureSubscription'

@@ -13,15 +13,15 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  - name: 'appServiceName'
-    value: 'suoerbwebapp'
-  - name: 'resourceGroupName'
-    value: 'WebappRG'
-  - name: 'azureSubscription'
-    value: 'Free Trial'
+  -name: 'appServiceName'
+  value: 'suoerbwebapp'
+  -name: 'resourceGroupName'
+   value: 'WebappRG'
+  -name: 'azureSubscription'
+   value: 'Free Trial'
  
 
-steps:
+ steps:
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2

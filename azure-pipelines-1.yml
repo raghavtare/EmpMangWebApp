@@ -44,16 +44,12 @@ steps:
       platform: '$(variables.buildPlatform)'
       configuration: '$(variables.buildConfiguration)'
 
-  - task: AzureCLI@2
-    displayName: 'Azure CLI Login'
-    inputs:
-      azureSubscription: $(azureSubscription)
-
+  
   - task: AzureWebApp@1
     displayName: 'Azure Web App Deploy'
     inputs:
-      azureSubscription: $(Free Trial)
-      appName: $(variables.appServiceName)
+      azureSubscription: 'Free Trial (8a751a26-05ef-4416-8b3d-d3a1729ce9ca)'
+      appType: 'webApp'
+      appName: 'suoerbwebapp'
       package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-      resourceGroupName: $variables.(WebappRG)
-      deploymentMethod: 'runFromPackage'
+      deploymentMethod: 'auto'
